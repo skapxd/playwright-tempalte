@@ -45,6 +45,11 @@ export const mouseHelper = async (page: Page) => {
         true
       );
 
+      document.addEventListener("mouseup", () => {
+        setOpacity(0.3);
+        clearTimeout(inactivityTimeout);
+      });
+
       document.addEventListener(
         "mousemove",
         (event) => {
