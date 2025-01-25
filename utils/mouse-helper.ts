@@ -24,6 +24,19 @@ export const mouseHelper = async (page: Page) => {
       document?.body?.appendChild(box);
     };
 
+    document.addEventListener(
+      "mousemove",
+      (event) => {
+        const existingBox = document.querySelector(`#${id}`);
+        if (!existingBox) document.body.appendChild(box);
+
+        const x = event.clientX + window.scrollX - 10;
+        const y = event.clientY + window.scrollY - 10;
+        box.style.transform = `translate(${x}px, ${y}px)`;
+      },
+      true
+    );
+
     document.addEventListener('click', fn, true);
     document.addEventListener('focus', fn, true);
     document.addEventListener(
