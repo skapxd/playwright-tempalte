@@ -40,7 +40,9 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  snapshotPathTemplate: '{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}-{platform}{ext}',
+  snapshotPathTemplate: process.env.CI
+    ? "{testDir}/{testFileDir}/{testFileName}-snapshots/ci/{arg}-{projectName}{ext}"
+    : "{testDir}/{testFileDir}/{testFileName}-snapshots/dev/{arg}-{projectName}{ext}",
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
